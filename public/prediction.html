@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('..//public/img/predictimg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            margin: 100px auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .description-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .description {
+            color: #f4f4f4;
+            font-size: 0.9em;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.6;
+            max-width: 90%;
+            margin: auto;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+        }
+
+        input[type="text"]::placeholder {
+            color: #ddd;
+        }
+
+        input[type="text"]:focus {
+            border-color: #b65959;
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            background-color: gray;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: rgb(9, 2, 34);
+            transform: translateY(-3px);
+        }
+
+        
+        #result {
+            margin-top: 10px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            color: #fff;
+            padding: 15px; /* Added padding for better readability */
+            max-width: 100%; /* Responsive width */
+            overflow: hidden; /* Prevent overflow */
+            text-align: left; /* Left align text */
+        }
+
+        #result h2 {
+            margin: 0; /* Remove margin for heading */
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 10px; /* Adjust this if you want some space below the heading */
+        }
+
+        #result-content {
+            white-space: pre-wrap; /* Preserve whitespace */
+            word-wrap: break-word; /* Break long words */
+            overflow-wrap: break-word; /* Ensure overflow works */
+            max-height: 300px; /* Limit height for overflow */
+            overflow-y: auto; /* Allow scrolling if content overflows */
+            font-family: 'Arial', sans-serif; /* Change the font here */
+            margin: 0; /* Remove margin to avoid extra space */
+        }
+    footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1><i class="fas fa-stethoscope"></i> Disease Prediction</h1>
+        <div class="description-box">
+            <p class="description">
+                Enter your symptoms below, and let our AI-powered tool analyze them to predict potential diseases.
+                This tool provides possible causes, suggested medications, and indicates the stage of the disease.
+            </p>
+        </div>
+        <form id="symptom-form">
+            <input type="text" id="symptoms" placeholder="Enter your symptoms (comma separated)" required />
+            <br><br>
+            <button type="submit">Predict <i class="fas fa-arrow-right"></i></button>
+        </form>
+        <div id="result">
+            <h2>Prediction Result:</h2>
+            <pre id="result-content"></pre>
+        </div>
+        <footer>
+            <p>&copy; 2024 Your Health AI</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('symptom-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const symptomsInput = document.getElementById('symptoms').value;
+            const symptomsArray = symptomsInput.split(',').map(symptom => symptom.trim());
+
+            try {
+                const response = await fetch('http://localhost:4002/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ symptoms: symptomsArray }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                displayResult(data);
+            } catch (error) {
+                console.error('Error fetching prediction:', error);
+                document.getElementById('result-content').innerText = `Error: ${error.message}`;
+                document.getElementById('result').style.display = 'block';
+            }
+        });
+        
+        function displayResult(data) {
+            if (data.error) {
+                document.getElementById('result-content').innerText = `Error: ${data.error}`;
+                document.getElementById('result').style.display='block';
+                return;
+            }
+
+            // Assuming data has the structure: { possible_causes: [], medications: [], stage: '' }
+            const possibleCauses = data.possible_causes ? data.possible_causes.join(', ') : 'N/A';
+            const medications = data.medications ? data.medications.join(', ') : 'N/A';
+            const stage = data.stage ? data.stage : 'N/A';
+
+            const resultText = `
+                Possible Causes: ${possibleCauses}
+                Suggested Medications: ${medications}
+                Stage: ${stage}
+            `;
+
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerText = resultText;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Chart</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1c5771 30%, #0e3861); /* Gradient from white to night blue */
+            color: #d3d3d3;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px; /* Increased font size for main title */
+            color: #eeefc4; /* Light color for headings */
+            text-align: center; /* Center align headings */
+            text-transform: uppercase; /* Uppercase for headings */
+            letter-spacing: 1.5px; /* Spacing between letters */
+            margin-bottom: 30px; /* Spacing below heading */
+        }
+
+
+        .container {
+            display: grid; /* Use CSS Grid */
+            grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+            gap: 20px; /* Gap between cards */
+            justify-items: center; /* Center align cards within their grid cells */
+        }
+
+        .card {
+            background-color: rgba(157, 207, 212, 0.9); /* Semi-transparent white for cards */
+            border-radius: 15px; /* Rounded corners */
+            padding: 15px;
+            width: 220px; /* Adjust width for better fit */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            transition: transform 0.3s ease; /* Transition for scaling effect */
+            text-align: center; /* Center align text inside card */
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Slightly enlarge card on hover */
+        }
+
+        img {
+            width: 100%; /* Full width for images */
+            height: 150px; /* Fixed height for images */
+            border-radius: 10px; /* Rounded corners for images */
+            object-fit: cover; /* Cover to maintain aspect ratio */
+        }
+
+        .meal-info {
+            margin-top: 10px; /* Margin above meal information */
+        }
+
+        .meal-info h3 {
+            color: #001f3f; /* Dark blue for meal names */
+            margin: 5px 0; /* Margin above and below meal name */
+        }
+
+        .meal-info p {
+            color: #333; /* Darker text for nutrient information */
+            margin: 5px 0; /* Margin above and below nutrient text */
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #3d728e; /* Dark blue for buttons */
+            border-radius: 20px; /* Fully rounded buttons */
+            margin: 5px;
+            transition: background-color 0.3s ease; /* Transition for smooth hover effect */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); /* Shadow for buttons */
+        }
+
+        nav a:hover {
+            background-color: #205571; /* Darker blue on hover */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); /* Deeper shadow on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="prediction.html">Disease Prediction</a>
+        <a href="diet.html">Diet Chart</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+    <h1>Daily Diet Chart</h1>
+
+    <!-- Vegetarian Diet Cards -->
+    <h1>Vegetarian Diet</h1>
+    <div class="container">
+        <div class="card">
+            <img src="img/Idli-Sambar-FP.jpg" alt="Idli">
+            <div class="meal-info">
+                <h3>7:00 AM</h3>
+                <p>Idli with Sambar</p>
+                <p>Nutrients: Carbohydrates, Protein</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="img/Veg-Biryani.jpg" alt="Vegetable Biryani">
+            <div class="meal-info">
+                <h3>12:00 PM</h3>
+                <p>Vegetable Biryani</p>
+                <p>Nutrients: Carbohydrates, Fiber</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="img/friut chat.jpeg" alt="Fruit Chaat">
+            <div class="meal-info">
+                <h3>3:00 PM</h3>
+                <p>Fruit Chaat</p>
+                <p>Nutrients: Vitamins, Antioxidants</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="img/daal.jpeg" alt="Dal Tadka">
+            <div class="meal-info">
+                <h3>6:00 PM</h3>
+                <p>Dal Tadka with Rice</p>
+                <p>Nutrients: Protein, Fiber</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Non-Vegetarian Diet Cards -->
+    <h1>Non-Vegetarian Diet</h1>
+    <div class="container">
+        <div class="card">
+            <img src="img/chicken-omelette-2-720x1080.jpg" alt="Chicken Omelette">
+            <div class="meal-info">
+                <h3>7:00 AM</h3>
+                <p>Chicken Omelette</p>
+                <p>Nutrients: Protein, Vitamins</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="img/Chicken-Biryani-Recipe.jpg" alt="Chicken Biryani">
+            <div class="meal-info">
+                <h3>12:00 PM</h3>
+                <p>Chicken Biryani</p>
+                <p>Nutrients: Carbohydrates, Protein</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="img/Egg-Salad-9-700x1050.jpg" alt="Egg Salad">
+            <div class="meal-info">
+                <h3>3:00 PM</h3>
+                <p>Egg Salad</p>
+                <p>Nutrients: Protein, Healthy Fats</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="img/grilled fish.jpeg" alt="Grilled Fish with Vegetables">
+            <div class="meal-info">
+                <h3>6:00 PM</h3>
+                <p>Grilled Fish with Vegetables</p>
+                <p>Nutrients: Omega-3, Vitamins</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mixed Diet Cards -->
+    <h1>Mixed Diet</h1>
+    <div class="container">
+        <div class="card">
+            <img src="img/Paratha-Amritsr.jpg" alt="Breakfast Paratha">
+            <div class="meal-info">
+                <h3>7:00 AM</h3>
+                <p>Paratha</p>
+                <p>Nutrients: Carbohydrates, Fiber</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="img/thali.jpg" alt="Thali (Mixed)">
+            <div class="meal-info">
+                <h3>12:00 PM</h3>
+                <p>Thali (Mixed)</p>
+                <p>Nutrients: Variety of Nutrients</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="img/chicken tikka.jpeg" alt="Chicken Tikka">
+            <div class="meal-info">
+                <h3>3:00 PM</h3>
+                <p>Chicken Tikka</p>
+                <p>Nutrients: Protein, Vitamins</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="img/pasta.jpeg" alt="Pasta with Pesto and Chicken">
+            <div class="meal-info">
+                <h3>8:00 PM</h3>
+                <p>Pasta with Pesto and Chicken</p>
+                <p>Nutrients: Carbohydrates, Protein</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

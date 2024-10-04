@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpline Numbers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #1a1a1a, #2c3e50, #34495e, #1abc9c); /* Gradient from dark grey to blue and dark green */
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Dark overlay to improve text visibility */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for better contrast */
+            z-index: 1;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: rgba(19, 23, 27, 0.8); /* Darker transparent button */
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(0, 74, 173, 0.8);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: #f1f1ff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        .helpline-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .helpline-card {
+            background: rgba(255, 255, 255, 0.1); /* Lighter transparent card */
+            border-radius: 20px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            text-align: center;
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+        }
+
+        .helpline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .helpline-card h3 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #f1f1ff;
+            font-weight: 600;
+        }
+
+        .helpline-card p {
+            font-size: 16px;
+            color: #e1e1ff;
+            margin: 5px 0;
+        }
+
+        .helpline-card a {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 15px;
+            text-decoration: none;
+            background-color: rgba(13, 48, 4, 0.9); /* Button color */
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .helpline-card a:hover {
+            background-color: rgba(41, 128, 185, 1); /* Darker on hover */
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .helpline-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #E1E1FF;
+            z-index: 2;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="prediction.html">Disease Prediction</a>
+        <a href="diet.html">Diet Chart</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <h1>Healthcare Helpline Numbers</h1>
+
+    <div class="helpline-container">
+        <div class="helpline-card">
+            <h3>National Ambulance Service</h3>
+            <p>For emergency medical assistance.</p>
+            <a href="tel:102">Call: 102</a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>National Health Helpline</h3>
+            <p>General health-related queries and advice.</p>
+            <a href="tel:18001801104">Call: 1800-180-1104</a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>Covid-19 Helpline</h3>
+            <p>24/7 helpline for Covid-19 assistance.</p>
+            <a href="tel:1075">Call: 1075</a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>Blood Donation Helpline</h3>
+            <p>Information on blood donation and availability.</p>
+            <a href="tel:104">Call: 104</a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>Mental Health Helpline</h3>
+            <p>Support for mental health and counseling.</p>
+            <a href="tel:9152987821">Call: 9152987821</a>
+        </div>
+
+        <div class="helpline-card">
+            <h3>AYUSH Helpline</h3>
+            <p>Ayurveda, Yoga, Unani, Siddha, Homeopathy queries.</p>
+            <a href="tel:14443">Call: 14443</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Healthcare Helpline. All rights reserved.</p>
+    </footer>
+</body>
+</html>

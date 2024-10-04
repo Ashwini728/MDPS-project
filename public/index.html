@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Disease Prediction System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            min-height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background-image: url('img/bg2.jpg'); /* Replace with your actual background image */
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh; /* Ensure it covers the full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            flex-direction: column; /* Aligns logo and content vertically */
+            position: relative; /* To contain the absolute footer */
+        }
+
+        .content {
+            max-width: 800px;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px; /* Center the logo and add some margin at the bottom */
+            width: 250px; /* Adjust size of the logo */
+            margin-bottom: -5%;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: transparent;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 50px;
+            margin: 10px;
+            display: inline-block;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .description {
+            display: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 50%;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            background-color: transparent; /* Semi-transparent black background */
+            z-index: 1; /* Ensure it appears on top of content */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="content">
+            <img src="img/mdps_logo_white_transparent.png" alt="MDPS Logo" class="logo"> <!-- Logo added here -->
+            <h1>Multiple Disease Prediction System</h1>
+            <p>Empowering You With Early Health Insight</p>
+
+            <a href="main.html" class="btn">Start Now</a>
+            <a href="#" class="btn" id="learnMore">Learn More</a>
+            <div class="description" id="description">
+                <p>
+                    The Multiple Disease Prediction System (MDPS) is a revolutionary platform that combines machine learning and healthcare
+                    expertise to offer users personalized predictions for various diseases. Our system analyzes the symptoms provided by the user
+                    and matches them with a comprehensive database of known health conditions.
+                </p>
+                <p>
+                    With this tool, users can get insights into potential health risks such as diabetes, heart disease, and respiratory conditions. By
+                    providing quick and accurate predictions, MDPS helps bridge the gap between users and healthcare professionals, empowering
+                    individuals to take control of their health proactively.
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            © 2024 Multiple Disease Prediction System. All Rights Reserved.
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript to toggle the description visibility
+        document.getElementById("learnMore").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            var description = document.getElementById("description");
+
+            if (description.style.display === "none" || description.style.display === "") {
+                description.style.display = "block"; // Show the description
+                this.textContent = "Show Less"; // Change button text
+            } else {
+                description.style.display = "none"; // Hide the description
+                this.textContent = "Learn More"; // Revert button text
+            }
+        });
+    </script>
+</body>
+</html>

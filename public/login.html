@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e1e1e 30%, #3c64c7);
+            color: #d3d3d3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .login-container {
+            display: flex;
+            background-color: rgba(44, 44, 44, 0.9);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+        .login-container:hover {
+            transform: scale(1.02);
+        }
+        .login-info {
+            background-color: #3c64c7;
+            color: white;
+            padding: 40px;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-info h2 {
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: 600;
+        }
+        .login-info p {
+            font-size: 16px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        .login-form {
+            padding: 40px;
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .login-form h2 {
+            color: #d3d3d3;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #d3d3d3;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #3c64c7;
+            outline: none;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #3c64c7, #576af9);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #2a50a0, #4a5cd4);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+        a {
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+            color: #3c64c7;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            color: #2a50a0;
+        }
+        #message {
+            color: #ff4d4d; /* Error message color */
+            text-align: center;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                width: 100%;
+            }
+            .login-info, .login-form {
+                width: 100%;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-info">
+            <h2>Discover Your Health Journey</h2>
+            <p>Log in to unlock a world of health insights, personalized for you. Get started on your path to better wellness!</p>
+        </div>
+
+        <div class="login-form">
+            <h2>Login</h2>
+            <form id="loginForm" method="post">
+                <input type="text" name="username" id="username" placeholder="Username" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="submit" value="Login">
+                <p id="message"></p> <!-- Error message display -->
+            </form>
+
+            <a href="register.html">Don't have an account? Sign up</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent the default form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:4002/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }), // Send data as JSON
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Login successful!');
+                    window.location.href = 'index.html'; // Redirect to the home page on success
+                } else {
+                    document.getElementById('message').innerText = `Login failed: ${data.error}`; // Display error message
+                }
+            } catch (error) {
+                document.getElementById('message').innerText = 'An error occurred during login. Check console for details.'; // Show generic error message
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

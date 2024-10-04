@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Page</title>
+    <style>
+        body {
+            background-image: url('../public/img/contact.webp'); /* Replace with your image URL */
+            background-size: contain;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Background overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: rgba(19, 23, 27, 0.6); /* Transparent blue */
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(0, 74, 173, 0.8); /* Slightly darker on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .doctor-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .doctor-card {
+            background: rgba(0, 0, 0, 0.6); /* Transparent color for the card */
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px;
+            width: 280px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .doctor-card img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: block;
+            margin: 0 auto 10px;
+            border: 5px solid #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .doctor-card h3 {
+            margin: 10px 0;
+            font-size: 22px;
+            text-align: center;
+            color: #f1f1ff;
+        }
+
+        .doctor-card p {
+            font-size: 16px;
+            margin: 5px 0;
+            text-align: center;
+            color: #e1e1ff;
+        }
+
+        .contact-options {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .contact-options a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            margin: 5px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .chat-btn {
+            background-color: rgba(52, 152, 219, 0.9); /* Slightly transparent */
+        }
+
+        .call-btn {
+            background-color: rgba(26, 188, 156, 0.9); /* Slightly transparent */
+        }
+
+        .video-call-btn {
+            background-color: rgba(231, 76, 60, 0.9); /* Slightly transparent */
+        }
+
+        .contact-options a:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #E1E1FF;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="prediction.html">Disease Prediction</a>
+        <a href="diet.html">Diet Chart</a>
+        <a href="helpline.html">Helpline</a>
+    </nav>
+
+    <h1>Consult with a Doctor</h1>
+
+    <div class="doctor-container">
+        <div class="doctor-card">
+            <h3>Dr. Aditi Sharma</h3>
+            <p>Cardiologist</p>
+            <p>Experience: 10 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+911234567890" class="chat-btn">Chat</a>
+                <a href="tel:+911234567890" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+911234567890" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <h3>Dr. Ravi Kumar</h3>
+            <p>Neurologist</p>
+            <p>Experience: 12 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+919876543210" class="chat-btn">Chat</a>
+                <a href="tel:+919876543210" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+919876543210" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <h3>Dr. Priya Mehta</h3>
+            <p>Pediatrician</p>
+            <p>Experience: 8 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+917654321098" class="chat-btn">Chat</a>
+                <a href="tel:+917654321098" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+917654321098" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <h3>Dr. Sameer Khan</h3>
+            <p>Orthopedic Surgeon</p>
+            <p>Experience: 15 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+918765432109" class="chat-btn">Chat</a>
+                <a href="tel:+918765432109" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+918765432109" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+
+        <!-- Additional Doctors -->
+        <div class="doctor-card">
+            <h3>Dr. Meena Iyer</h3>
+            <p>Dermatologist</p>
+            <p>Experience: 9 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+911234567891" class="chat-btn">Chat</a>
+                <a href="tel:+911234567891" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+911234567891" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <h3>Dr. Rakesh Yadav</h3>
+            <p>ENT Specialist</p>
+            <p>Experience: 14 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+919876543211" class="chat-btn">Chat</a>
+                <a href="tel:+919876543211" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+919876543211" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <h3>Dr. Neha Kapoor</h3>
+            <p>Gynecologist</p>
+            <p>Experience: 11 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+917654321100" class="chat-btn">Chat</a>
+                <a href="tel:+917654321100" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+917654321100" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <h3>Dr. Arjun Menon</h3>
+            <p>Gastroenterologist</p>
+            <p>Experience: 7 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+918765432101" class="chat-btn">Chat</a>
+                <a href="tel:+918765432101" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+918765432101" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <h3>Dr. Kavita Nair</h3>
+            <p>Ophthalmologist</p>
+            <p>Experience: 10 years</p>
+            <p>Coimbatore</p>
+            <div class="contact-options">
+                <a href="https://wa.me/+911234567892" class="chat-btn">Chat</a>
+                <a href="tel:+911234567892" class="call-btn">Call</a>
+                <a href="https://wa.me/video/+911234567892" class="video-call-btn">Video Call</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Multiple Disease Prediction System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

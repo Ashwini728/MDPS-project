@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Medical Centers</title>
+    <style>
+    
+        body {
+            background: url('../public/img/map.png') no-repeat center center fixed; /* Replace 'your-image-path.jpg' with your image URL */
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: rgb(8, 0, 0);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; /* Ensures that the body is positioned relatively */
+        }
+
+        /* Combined background image and overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+              linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), /* Semi-transparent overlay */
+              url('your-image-path.jpg') no-repeat center center fixed; /* Background image */
+            background-size: cover;
+            z-index: -2; /* Ensures the background is behind everything */
+        }
+        h1 {
+            color: #000;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #698bef;
+        }
+
+        .medical-centers-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            gap: 15px; /* Space between cards */
+        }
+
+        .center-card {
+            background-color: rgba(241, 246, 248, 0.6); /* Brighter blue for card background */
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            color: black;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .center-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .center-card h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .center-card p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .map-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            gap: 15px; /* Space between maps */
+        }
+        
+        /* Overlay for map container */
+        
+        iframe {
+            border: 2px solid #428ace;
+            border-radius: 10px;
+            width: 300px; /* Adjusted width for maps */
+            height: 300px; /* Adjusted height for maps */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="prediction.html">Disease Prediction</a>
+        <a href="diet.html">Diet Chart</a>
+        <a href="helpline.html">Helpline</a>
+        <a href="contact.html">Consultation</a>
+    </nav>
+
+    <h1>Nearby Medical Centers</h1>
+
+    <div class="medical-centers-container">
+        <div class="center-card" onclick="scrollToMap('map1')">
+            <h3>Royal Care Super Speciality Hospital</h3>
+            <p>Specialties: General Medicine, Surgery, ICU</p>
+        </div>
+
+        <div class="center-card" onclick="scrollToMap('map2')">
+            <h3>Prema Hospital</h3>
+            <p>Specialties: Laparoscopic Surgery, Multi-Speciality</p>
+        </div>
+
+        <div class="center-card" onclick="scrollToMap('map3')">
+            <h3>KMCH Kovilpalayam Hospital</h3>
+            <p>Specialties: Cardiology, Pediatrics</p>
+        </div>
+
+        <div class="center-card" onclick="scrollToMap('map4')">
+            <h3>Kovai Medical Center and Hospital</h3>
+            <p>Specialties: Oncology, General Surgery</p>
+        </div>
+
+        <div class="center-card" onclick="scrollToMap('map5')">
+            <h3>KG Speciality Medical Centre</h3>
+            <p>Specialties: Gastroenterology, Endocrinology</p>
+        </div>
+
+        <div class="center-card" onclick="scrollToMap('map6')">
+            <h3>KMCH Medical College Hospital</h3>
+            <p>Medical Education, Multi-Specialty</p>
+        </div>
+
+        <div class="center-card" onclick="scrollToMap('map7')">
+            <h3>Dr. Muthus MultiSpeciality Hospital</h3>
+            <p>Specialties: General Surgery, Orthopedics</p>
+        </div>
+
+        <div class="center-card" onclick="scrollToMap('map8')">
+            <h3>G. Kuppuswamy Naidu Memorial Hospital</h3>
+            <p>Specialties: General Surgery, Orthopedics</p>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <div id="map1">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125303.21135783858!2d76.94520084335934!3d11.059206000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba857afe4e47db7%3A0xa33933ad450744e6!2sRoyal%20Care%20Super%20Speciality%20Hospital!5e0!3m2!1sen!2sin!4v1727864575586!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>
+        </div>
+        <div id="map2">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125284.7503055393!2d77.0254062433594!3d11.1023122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8ff7724579d7f%3A0x85ddb6a9a50b9960!2sPREMA%20HOSPITAL%20%7C%2024hrs%20Laparoscopic%20%7C%20Multi%20Speciality%20hospital%20in%20Coimbatore!5e0!3m2!1sen!2sin!4v1727864835096!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>
+        </div>
+        <div id="map3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125282.59578451673!2d76.8797845433594!3d11.107332200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8f99357691017%3A0x817a241974946e34!2sKMCH%20Kovilpalayam%20Hospital!5e0!3m2!1sen!2sin!4v1727865088133!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>
+        </div>
+        <div id="map4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125310.39244920234!2d76.89626234335938!3d11.042393400000012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba857c6e0aac7c7%3A0x6ca8e27472a4a8bc!2sKovai%20Medical%20Center%20and%20Hospital%20-%20Best%20Multi%20Speciality%20Hospital%20in%20Coimbatore%20%7C%20Heart%20Treatment%20%7C%20Cancer%20Treatment!5e0!3m2!1sen!2sin!4v1727865288540!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>
+        </div>
+        <div id="map5">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125328.35324678203!2d76.82737794335938!3d11.000231900000019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859ddf5ebc80b%3A0xa6e568446b6b2015!2sKG%20Speciality%20Medical%20Centre%20(KGSC)!5e0!3m2!1sen!2sin!4v1727864395865!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>
+        </div>
+        <div id="map6">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125271.39437089035!2d76.88983714335934!3d11.133395300000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8573db4176e1d%3A0x30e62bb17361cb07!2sKMCH%20Medical%20College%20Hospital!5e0!3m2!1sen!2sin!4v1727865508818!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>
+        </div>
+        <div id="map7">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125320.90882724893!2d76.81625884335936!3d11.01772640000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8f78ca38ad66f%3A0xcf9bc8ca0ea42f8a!2sDr.%20Muthus%20MultiSpeciality%20Hospital!5e0!3m2!1sen!2sin!4v1727865720592!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>
+        </div>
+        <div id="map8">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125310.63179527198!2d76.8958329433594!3d11.041832599999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859b37067ca1f%3A0x2ea8f217acdd4d24!2sG.%20Kuppuswamy%20Naidu%20Memorial%20Hospital!5e0!3m2!1sen!2sin!4v1727865936181!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function scrollToMap(mapId) {
+            const mapElement = document.getElementById(mapId);
+            if (mapElement) {
+                mapElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>

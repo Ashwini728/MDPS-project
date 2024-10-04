@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Multiple Disease Prediction System</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url('img/background-image.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #6A0DAD; 
+            color: white;
+        }
+
+        .overlay {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.7); 
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; 
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px; 
+            background-color: #3498DB; /* Blue color */
+            border-radius: 50px; 
+            font-size: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 250px; 
+            text-align: center; 
+        }
+
+        nav a:hover {
+            background-color: #2980B9; /* Darker blue on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 35px;
+            }
+
+            nav a {
+                font-size: 18px;
+                padding: 12px 20px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay">
+        <h1>Welcome</h1> 
+        <nav>
+            <a href="login.html">Login/Register</a>
+            <a href="prediction.html">Disease Prediction</a>
+            <a href="diet.html">Diet Chart</a>
+            <a href="medical centers.html">Nearby Medical Centers</a>
+            <a href="contact.html">Consult with a Doctor</a>
+            <a href="helpline.html">Helpline Numbers</a>
+        </nav>
+    </div>
+
+</body>
+</html>
