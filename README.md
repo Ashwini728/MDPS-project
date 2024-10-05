@@ -1,47 +1,25 @@
-GEN AI Disease Prediction System
-Overview
-The GEN AI Disease Prediction System is a machine learning-based web application designed to predict multiple diseases, offering users an all-in-one platform for health-related insights. In addition to providing accurate disease predictions, the platform integrates features like a helpline, consult with doctors, nearby medical centers, diet charts, and secure login/register functionality.
 
-Built with a focus on user-friendliness and accessibility, the system aims to empower individuals to take proactive steps toward managing their health.
+GEN AI Disease Prediction System
+This repository contains the code for a GEN AI Disease Prediction System that provides users with various features for health monitoring and assistance. The system utilizes Gemini AI for accurate disease prediction based on user input, alongside additional supportive health features such as helpline services, consultation with doctors, nearby medical centers, and personalized diet charts.
 
 Features
-1. Multiple Disease Prediction
-Utilizes machine learning models to predict the likelihood of various diseases based on user-provided health indicators.
-Users can input data like age, blood pressure, cholesterol levels, and more to receive a predictive result.
+1. Disease Prediction with Gemini AI
+The core feature of the system allows users to input symptoms and receive disease predictions. The system leverages Gemini AI, a state-of-the-art AI model, to provide predictions based on the symptoms entered by the user.
 2. Helpline
-A helpline section where users can access emergency contact information or call medical support directly from the platform.
-Ensures that users are never far from help in critical situations.
+A dedicated helpline feature that allows users to get immediate assistance for their medical concerns. This can include emergency contacts and health-related advice.
 3. Consult with Doctor
-An embedded feature that connects users with professional doctors for online consultations.
-Integrated calendar booking system for scheduling appointments.
-Offers direct video call functionality for virtual consultations.
+The platform provides a feature where users can book virtual consultations with doctors. It includes options for real-time video consultation and scheduling appointments based on user preferences.
 4. Nearby Medical Centers
-Provides a list of nearby medical centers based on the user's location.
-Helps users quickly find and get directions to hospitals, clinics, and emergency services.
-5. Diet Chart
-Generates personalized diet charts based on the user’s health condition and disease prediction results.
-Promotes healthy eating habits tailored to specific medical conditions or preventive measures.
-6. User Authentication (Login/Register)
-Secure login and registration pages for users.
-Users can create personal profiles to store medical records and access all features of the platform.
-7. Additional Features
-User-Friendly Interface: Simple and intuitive UI/UX design to ensure accessibility for all users.
-Real-Time Data Access: Connects to a cloud-based MongoDB Atlas database for real-time data handling and disease prediction.
-Responsive Design: Fully responsive application, ensuring it works across mobile, tablet, and desktop devices.
-Technologies Used
-Frontend:
-HTML, CSS, JavaScript
-Bootstrap for responsive design
-React.js for dynamic user interfaces
-Backend:
-Node.js and Express.js for server-side logic
-MongoDB Atlas for database management
-Mongoose for object data modeling (ODM)
-Machine Learning:
-Python for model training and prediction
-Pandas, NumPy, Scikit-learn libraries
-Neural networks and classification algorithms for disease prediction
-Authentication:
-JWT (JSON Web Tokens) for user authentication and session management
-Video Consultation:
-WebRTC and peer-to-peer technologies for video calling functionality
+Using location services, the system helps users find nearby hospitals, clinics, and pharmacies. It ensures that medical help is never too far away in times of need.
+5. Personalized Diet Chart
+After the disease prediction, the system provides a diet chart tailored to the user's health condition. This helps in promoting better health and faster recovery.
+6. Login and Registration Pages
+Secure authentication system with a login and registration interface for users to create and manage their profiles. This ensures that their health data and preferences are securely stored and easily accessible.
+7. User Dashboard
+A user-friendly dashboard where users can view their previous health records, prediction history, upcoming consultations, and recommended diet plans.
+Technology Stack
+Frontend: HTML, CSS, JavaScript
+Backend: Node.js, Express.js
+Database: MongoDB (used to store user data, consultations, etc.)
+AI Service: Gemini AI for disease prediction
+APIs: Integrated for doctor consultations and nearby medical centers using external services.
