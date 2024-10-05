@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask about Health Sector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #092b4e, #1f4c9f);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Page heading styling */
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Chat container styling */
+        .chat-container {
+            background: #c1c8eb;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px;
+            height: 80%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Message area styling */
+        .chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* User message styling */
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #20486b, #3a8dde);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 15px 15px 0 15px;
+            max-width: 75%;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word; /* Ensure long words are wrapped */
+        }
+
+        /* Bot message styling */
+        .message.bot {
+            align-self: flex-start;
+            background: #c7ebf9;
+            color: #333;
+            padding: 12px 18px;
+            border-radius: 15px 15px 15px 0;
+            max-width: 75%;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word; /* Ensure long words are wrapped */
+        }
+
+        /* Chat input area styling */
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            background-color: #c1c8eb;
+            border-top: 2px solid #ddd;
+        }
+
+        /* Text area styling */
+        textarea {
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            background: #ffffff;
+            font-size: 1rem;
+            resize: none;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Send button styling */
+        button {
+            background: linear-gradient(135deg, #092b4e, #3a8dde);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1rem;
+            margin-left: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #3a8dde, #1f4c9f);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        button i {
+            margin-left: 5px;
+        }
+
+        /* Scroll bar for the chat box */
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background-color: #bbb;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page heading -->
+    <h1>Ask about Health Sector</h1>
+
+    <div class="chat-container">
+        <!-- Chat message area -->
+        <div class="chat-box" id="chat-box">
+            <!-- Example user message -->
+            <div class="message user">What is the best way to stay fit?</div>
+            <!-- Example bot message -->
+            <div class="message bot">Regular exercise, a balanced diet, and adequate sleep are key factors in staying fit.</div>
+        </div>
+
+        <!-- Chat input area -->
+        <div class="chat-input">
+            <textarea id="question" placeholder="Enter your health-related question..." rows="1" required></textarea>
+            <button type="submit" id="send-btn">Send <i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        // Handle the form submission and chat display logic
+        const chatBox = document.getElementById('chat-box');
+        const sendButton = document.getElementById('send-btn');
+        const questionInput = document.getElementById('question');
+
+        // Send message on button click
+        sendButton.addEventListener('click', async () => {
+            const questionText = questionInput.value;
+
+            if (questionText.trim() === "") {
+                return; // Don't send empty messages
+            }
+
+            // Display user's message on the right
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user');
+            userMessage.innerText = questionText;
+            chatBox.appendChild(userMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to bottom
+
+            // Clear input
+            questionInput.value = "";
+
+            try {
+                const response = await fetch('http://localhost:4002/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question: questionText }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                displayResponse(data.answer);
+            } catch (error) {
+                console.error('Error fetching answer:', error);
+                displayResponse('Error: Unable to get response.');
+            }
+        });
+
+        // Display the response message on the left
+        function displayResponse(answer) {
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('message', 'bot');
+            botMessage.innerText = answer ? answer.replace(/[\u200B-\u200D\uFEFF]/g, '') : 'No response available'; // Clean response
+            chatBox.appendChild(botMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to bottom
+        }
+    </script>
+</body>
+</html>

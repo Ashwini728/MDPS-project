@@ -14,7 +14,7 @@
             padding: 0;
             color: #ffffff;
         }
-        
+
         .overlay {
             position: fixed;
             top: 0;
@@ -102,7 +102,6 @@
             transform: translateY(-3px);
         }
 
-        
         #result {
             margin-top: 10px;
             border: 2px solid #fff;
@@ -132,7 +131,8 @@
             font-family: 'Arial', sans-serif; /* Change the font here */
             margin: 0; /* Remove margin to avoid extra space */
         }
-    footer {
+
+        footer {
             margin-top: 20px;
             font-size: 14px;
             color: #e0e0e0;
@@ -195,7 +195,7 @@
         function displayResult(data) {
             if (data.error) {
                 document.getElementById('result-content').innerText = `Error: ${data.error}`;
-                document.getElementById('result').style.display='block';
+                document.getElementById('result').style.display = 'block';
                 return;
             }
 
@@ -213,6 +213,13 @@
             const resultContent = document.getElementById('result-content');
             resultContent.innerText = resultText;
             document.getElementById('result').style.display = 'block';
+
+            // Ask the user if they want to know more after displaying results
+            setTimeout(() => {
+                if (confirm("Do you want a diet chart based on your condition?")) {
+                window.location.href = 'diet.html?stage=' + encodeURIComponent(stage); // Redirect to diet chart page with stage
+            }
+            }, 500); // Delay for better user experience
         }
     </script>
 </body>

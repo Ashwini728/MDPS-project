@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const User = require('./models/User'); // Import User model
 const { GoogleGenerativeAI } = require('@google/generative-ai'); // Import Generative AI
 const path = require('path'); // Import path module
-require('dotenv').config(); // This will load environment variables from the .env file
+require('dotenv').config(); // Load environment variables from the .env file
 
 // Initialize Express app
 const app = express();
@@ -20,7 +20,6 @@ app.use(express.static(path.join(__dirname, 'public'))); // Serve static files f
 
 // MongoDB Connection URI
 const dbURI = 'mongodb+srv://ashwinianil2003:mEWK4cdOMJTP8cB8@cluster0.eakhb.mongodb.net/disease-prediction?retryWrites=true&w=majority';
-
 
 
 // Connect to MongoDB
@@ -52,8 +51,6 @@ app.get('/', (req, res) => {
 });
 
 // Route for predicting diseases using Gemini AI
-// Route for predicting diseases using Gemini AI
-// Route for predicting diseases using Gemini AI
 app.post('/predict', async (req, res) => {
   const { symptoms } = req.body; // Get the symptoms from the request body
 
@@ -71,7 +68,7 @@ app.post('/predict', async (req, res) => {
     const result = await chatSession.sendMessage("Please provide the diseases, stages, and suggested medications based on the symptoms.");
 
     // Parse the AI response
-    const predictionData = parsePredictionResponse(result.response.text()); // Implement this function to format your AI response
+    const predictionData = parsePredictionResponse(result.response.text());
 
     res.status(200).json(predictionData); // Respond with the prediction data
   } catch (error) {
@@ -80,37 +77,31 @@ app.post('/predict', async (req, res) => {
   }
 });
 
-
-
-// Helper function to parse the AI response
-// Helper function to parse the AI response
-// Helper function to parse the AI response
 // Helper function to parse the AI response
 function parsePredictionResponse(aiResponse) {
   try {
-      const data = JSON.parse(aiResponse);
+    const data = JSON.parse(aiResponse);
 
-      return {
-          possible_causes: data.diseases || ['N/A'], // Extract diseases
-          medications: data.medications || ['Consult a doctor for accurate diagnosis.'], // Extract medications
-          stage: data.stage || 'Unknown', // Extract stage
-          basic_medicines: data.basic_medicines || ['Rest, fluids, and over-the-counter pain relievers'], // Extract basic medicines
-          disclaimer: 'Consult a doctor for accurate diagnosis and appropriate treatment.', // Add a disclaimer
-      };
+    return {
+      possible_causes: data.diseases || ['N/A'],
+      medications: data.medications || ['Consult a doctor for accurate diagnosis.'],
+      stage: data.stage || 'Unknown',
+      basic_medicines: data.basic_medicines || ['Rest, fluids, and over-the-counter pain relievers'],
+      disclaimer: 'Consult a doctor for accurate diagnosis and appropriate treatment.',
+    };
   } catch (error) {
-      console.error('Error parsing AI response:', error);
-      return {
-          possible_causes: ['N/A'],
-          medications: ['N/A'],
-          stage: 'Unknown', // Default to 'Unknown' in case of errors
-          basic_medicines: ['Rest, fluids, and over-the-counter pain relievers'],
-          disclaimer: 'Consult a doctor for accurate diagnosis and appropriate treatment.',
-      };
+    console.error('Error parsing AI response:', error);
+    return {
+      possible_causes: ['N/A'],
+      medications: ['N/A'],
+      stage: 'Unknown',
+      basic_medicines: ['Rest, fluids, and over-the-counter pain relievers'],
+      disclaimer: 'Consult a doctor for accurate diagnosis and appropriate treatment.',
+    };
   }
 }
 
-
-// Route for fetching all users
+// User Routes
 app.get('/users', async (req, res) => {
   try {
     const users = await User.find(); // Fetch all users from the User model
@@ -121,7 +112,6 @@ app.get('/users', async (req, res) => {
   }
 });
 
-// Route for registering a new user
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
 
@@ -131,7 +121,7 @@ app.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'User already registered' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10); // Salt rounds = 10
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ username, password: hashedPassword });
 
     await newUser.save();
@@ -142,7 +132,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Route for logging in an existing user
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -164,7 +153,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Route for fetching diet chart
+// Route for diet chart
 app.get('/diet', (req, res) => {
   const dietChart = [
     { time: 'Morning', items: ['Idli', 'Sambar'], nutrients: ['Carbohydrates', 'Protein'] },
@@ -173,12 +162,12 @@ app.get('/diet', (req, res) => {
   res.json(dietChart);
 });
 
-// Route for fetching medical centers
+// Route for medical centers
 app.get('/medical-centers', (req, res) => {
   res.json({ message: 'Medical centers will be displayed here' });
 });
 
-// Route for fetching helpline numbers
+// Route for helpline numbers
 app.get('/helpline', (req, res) => {
   const helplines = [
     { name: 'National Health Helpline', number: '1800-11-1234' },
@@ -186,14 +175,52 @@ app.get('/helpline', (req, res) => {
   ];
   res.json(helplines);
 });
+// Route for asking health-related questions
+app.post('/ask', async (req, res) => {
+  const question = req.body.question;
 
-// Route for fetching consultation doctors
-app.get('/consultation', (req, res) => {
-  const doctors = [
-    { name: 'Dr. A. Sharma', specialization: 'Cardiologist', contact: '555-1234' },
-    { name: 'Dr. B. Verma', specialization: 'Dermatologist', contact: '555-5678' },
-  ];
-  res.json(doctors);
+  if (!question) {
+      return res.status(400).json({ error: 'Question is required.' });
+  }
+
+  try {
+      // Start a new chat session with the AI model
+      const chatSession = model.startChat({
+          generationConfig,
+          history: [{
+              role: "user",
+              parts: [{ text: question }],
+          }],
+      });
+
+      // Send the message and await the response
+      const result = await chatSession.sendMessage("Please provide a detailed response to the question.");
+
+      // Parse and return the AI response
+      res.json({ answer: result.response.text() });
+  } catch (error) {
+      console.error('Error during AI response generation:', error);
+      res.status(500).json({ error: 'Internal server error while generating response' });
+  }
+});
+
+// AI Question Handling
+app.post('/ask', (req, res) => {
+  const question = req.body.question;
+
+  if (!question) {
+      return res.status(400).json({ error: 'Question is required.' });
+  }
+
+  // Replace this mock response with your actual AI integration
+  const answer = getAIResponse(question); 
+  res.json({ answer });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
 
 // Handle any unhandled promise rejections
