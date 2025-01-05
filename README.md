@@ -2,6 +2,7 @@
 GEN AI Disease Prediction System
 This repository contains the code for a GEN AI Disease Prediction System that provides users with various features for health monitoring and assistance. The system utilizes Gemini AI for accurate disease prediction based on user input, alongside additional supportive health features such as helpline services, consultation with doctors, nearby medical centers, and personalized diet charts.
 
+Features
 
 1. Disease Prediction with Gemini AI
 The core feature of the system allows users to input symptoms and receive disease predictions. The system leverages Gemini AI, a state-of-the-art AI model, to provide predictions based on the symptoms entered by the user.
